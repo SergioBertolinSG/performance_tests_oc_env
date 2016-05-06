@@ -1,0 +1,50 @@
+---
+- hosts: all
+  user: vagrant
+  sudo: yes
+  
+  tasks:
+   - name: Add owncloud repository
+     command: sh -c "echo 'deb http://download.owncloud.org/download/repositories/stable/Ubuntu_14.04/ /' >> /etc/apt/sources.list.d/owncloud.list"
+
+   - name: Add apt key
+     apt_key: validate_certs=False url=https://download.owncloud.org/download/repositories/stable/Ubuntu_14.04/Release.key state=present
+
+
+   - name: update packages cache
+     apt: update_cache=yes cache_valid_time=3600
+
+   - name: install packages
+     apt: name={{ item.name }}
+     with_items:
+       - { name: 'git' }
+       - { name: 'python' }
+       - { name: 'sudo' }
+       - { name: 'apache2' }
+       - { name: 'mysql-server' }
+       - { name: 'owncloud' }
+     notify:
+      - restart apache
+
+   - name: add script for installing current owncloud
+     copy: src=install_master_owncloud.sh dest=/home/vagrant/install_master_owncloud.sh owner=vagrant group=vagrant mode=0775
+
+   - name: add script for removing default owncloud database
+     copy: src=clean_database.py dest=/home/vagrant/clean_database.py owner=vagrant group=vagrant mode=0775
+
+   - name: download composer
+     command: sh -c "curl -sS https://getcomposer.org/installer | php"
+   
+   - name: install it
+     command: sh -c "mv /home/vagrant/composer.phar /usr/local/bin/composer"
+ 
+   - name: create swap file composer
+     command: sh -c "/bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024"
+   - name: create swap space
+     command: sh -c "/sbin/mkswap /var/swap.1"
+   - name: activate swap
+     command: sh -c "/sbin/swapon /var/swap.1"
+
+  handlers:
+    - name: restart apache
+      service: name=apache2 state=restarted
