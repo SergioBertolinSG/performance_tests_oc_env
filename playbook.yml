@@ -10,6 +10,8 @@
    - name: Add apt key
      apt_key: validate_certs=False url=https://download.owncloud.org/download/repositories/stable/Ubuntu_14.04/Release.key state=present
 
+   - name: Add repositories
+     apt_repository: repo='ppa:beineri/opt-qt551-trusty' state=present
 
    - name: update packages cache
      apt: update_cache=yes cache_valid_time=3600
@@ -19,9 +21,13 @@
      with_items:
        - { name: 'git' }
        - { name: 'python' }
+       - { name: 'python-mysqldb'}
        - { name: 'sudo' }
        - { name: 'apache2' }
        - { name: 'mysql-server' }
+       - { name: 'g++' }
+       - { name: 'qt-latest' }
+       - { name: 'libgl1-mesa-dev' }
        - { name: 'owncloud' }
      notify:
       - restart apache

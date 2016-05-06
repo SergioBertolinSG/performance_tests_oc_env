@@ -24,7 +24,7 @@ Vagrant.configure(2) do |config|
   # Example for VirtualBox:
   #
   config.vm.provider "virtualbox" do |vb|
-      vb.name = "VAGRANT_VM_BEHAT_OWNCLOUD_ENV"
+      vb.name = "VAGRANT_VM_PERFORMANCE_TESTS_OC_ENV"
       vb.customize ["setextradata", :id, "VBoxInternal/Devices/VMMDev/0/Config/GetHostTimeDisabled", 1]
   #   # Display the VirtualBox GUI when booting the machine
   #   vb.gui = true

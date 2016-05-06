@@ -2,7 +2,7 @@
 
 import MySQLdb
 
-db = MySQLdb.connect ('localhost', 'root', 'root')
+db = MySQLdb.connect ('localhost', 'root', '')
 cursor = db.cursor()
 
 cursor.execute ("select * from information_schema.SCHEMATA where SCHEMA_NAME='owncloud'")
