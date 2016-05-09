@@ -31,6 +31,15 @@ $app->get('/list_files_available', function (Request $request, Response $respons
     return $response;
 });
 
+$app->get('/get_file/{file}', function (Request $request, Response $response) {
+    $filename = $request->getAttribute('file');
+    $myfile = fopen("/srv/performance_tests/$filename", "r") or die("Unable to open file!");
+	$jsoncontent = fread($myfile,filesize("/srv/performance_tests/$filename"));
+	fclose($myfile);
+	$response->getBody()->write($jsoncontent);
+    return $response;
+});
+
 $app->get('/run_tests/{commit}', function (Request $request, Response $response) {
 	if (isProcessRunning("run.sh")){
 		$response->getBody()->write("Previous tests are still running");
