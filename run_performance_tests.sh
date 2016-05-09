@@ -26,4 +26,7 @@ export DAV_PASS=admin
 echo "$DAV_USER : $DAV_PASS will run tests"
 /opt/administration/performance-tests-c++/webdav-benchmark http://localhost:$PORT/remote.php/webdav/ -csv > /srv/performance-tests/"$currentTime"_"$COMMIT".csv
 
+php /srv/tools/createFileMergingTestData.php $COMMIT $currentTime /srv/performance_tests/"$currentTime"_"$COMMIT".csv /srv/tools/stats_fake.json > /srv/performance_tests/"$currentTime"_"$COMMIT".json
+rm /srv/performance_tests/"$currentTime"_"$COMMIT".csv
+
 sudo kill $PHPPID

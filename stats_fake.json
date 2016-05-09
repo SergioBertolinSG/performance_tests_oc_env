@@ -1,0 +1,253 @@
+{
+    "queries": [
+        {
+            "count": 1324,
+            "type": "SELECT",
+            "table": "oc_users"
+        },
+        {
+            "count": 1,
+            "type": "INSERT",
+            "table": "oc_users"
+        },
+        {
+            "count": 1322,
+            "type": "SELECT",
+            "table": "oc_preferences"
+        },
+        {
+            "count": 2641,
+            "type": "SELECT",
+            "table": "oc_appconfig"
+        },
+        {
+            "count": 21,
+            "type": "INSERT",
+            "table": "oc_appconfig"
+        },
+        {
+            "count": 1322,
+            "type": "SELECT",
+            "table": "oc_groups"
+        },
+        {
+            "count": 1,
+            "type": "INSERT",
+            "table": "oc_groups"
+        },
+        {
+            "count": 1321,
+            "type": "SELECT",
+            "table": "oc_group_user"
+        },
+        {
+            "count": 1,
+            "type": "INSERT",
+            "table": "oc_group_user"
+        },
+        {
+            "count": 1,
+            "type": "INSERT",
+            "table": "oc_preferences"
+        },
+        {
+            "count": 2642,
+            "type": "SELECT",
+            "table": "oc_storages"
+        },
+        {
+            "count": 2,
+            "type": "INSERT",
+            "table": "oc_storages"
+        },
+        {
+            "count": 31880,
+            "type": "SELECT",
+            "table": "oc_filecache"
+        },
+        {
+            "count": 1326,
+            "type": "SELECT",
+            "table": "oc_mimetypes"
+        },
+        {
+            "count": 6,
+            "type": "INSERT",
+            "table": "oc_mimetypes"
+        },
+        {
+            "count": 1333,
+            "type": "INSERT",
+            "table": "oc_filecache"
+        },
+        {
+            "count": 5522,
+            "type": "UPDATE",
+            "table": "oc_filecache"
+        },
+        {
+            "count": 100,
+            "type": "SELECT",
+            "table": "oc_jobs"
+        },
+        {
+            "count": 7,
+            "type": "INSERT",
+            "table": "oc_jobs"
+        },
+        {
+            "count": 1320,
+            "type": "DELETE",
+            "table": "oc_file_locks"
+        },
+        {
+            "count": 1,
+            "type": "UPDATE",
+            "table": "oc_preferences"
+        },
+        {
+            "count": 1319,
+            "type": "SELECT-JOIN",
+            "table": "oc_share"
+        },
+        {
+            "count": 1319,
+            "type": "SELECT",
+            "table": "oc_share_external"
+        },
+        {
+            "count": 3464,
+            "type": "INSERT",
+            "table": "oc_file_locks"
+        },
+        {
+            "count": 8216,
+            "type": "UPDATE",
+            "table": "oc_file_locks"
+        },
+        {
+            "count": 4435,
+            "type": "SELECT",
+            "table": "oc_share"
+        },
+        {
+            "count": 40,
+            "type": "INSERT",
+            "table": "oc_files_trash"
+        },
+        {
+            "count": 40,
+            "type": "DELETE",
+            "table": "oc_filecache"
+        },
+        {
+            "count": 2,
+            "type": "DELETE",
+            "table": "oc_properties"
+        }
+    ],
+    "requests": {
+        "PROPFIND": {
+            "totalSentBytes": 31460150,
+            "totalServeRequestTime": 44649,
+            "count": {
+                "100": 41,
+                "200": 0,
+                "300": 0,
+                "400": 78,
+                "500": 3,
+                "600": 0,
+                "700": 20,
+                "800": 0,
+                "900": 0,
+                "1000": 0,
+                ">1000": 0
+            }
+        },
+        "MKCOL": {
+            "totalSentBytes": 2764,
+            "totalServeRequestTime": 2513,
+            "count": {
+                "100": 0,
+                "200": 0,
+                "300": 0,
+                "400": 0,
+                "500": 2,
+                "600": 1,
+                "700": 0,
+                "800": 0,
+                "900": 0,
+                "1000": 0,
+                ">1000": 1
+            }
+        },
+        "PUT": {
+            "totalSentBytes": 832969,
+            "totalServeRequestTime": 632633,
+            "count": {
+                "100": 0,
+                "200": 0,
+                "300": 0,
+                "400": 0,
+                "500": 142,
+                "600": 698,
+                "700": 108,
+                "800": 39,
+                "900": 28,
+                "1000": 17,
+                ">1000": 39
+            }
+        },
+        "GET": {
+            "totalSentBytes": 115167456,
+            "totalServeRequestTime": 14456,
+            "count": {
+                "100": 0,
+                "200": 17,
+                "300": 36,
+                "400": 6,
+                "500": 0,
+                "600": 0,
+                "700": 1,
+                "800": 0,
+                "900": 0,
+                "1000": 0,
+                ">1000": 0
+            }
+        },
+        "COPY": {
+            "totalSentBytes": 27710,
+            "totalServeRequestTime": 43862,
+            "count": {
+                "100": 0,
+                "200": 0,
+                "300": 0,
+                "400": 0,
+                "500": 1,
+                "600": 1,
+                "700": 0,
+                "800": 0,
+                "900": 4,
+                "1000": 4,
+                ">1000": 30
+            }
+        },
+        "DELETE": {
+            "totalSentBytes": 2253,
+            "totalServeRequestTime": 1612,
+            "count": {
+                "100": 0,
+                "200": 0,
+                "300": 1,
+                "400": 0,
+                "500": 0,
+                "600": 0,
+                "700": 2,
+                "800": 0,
+                "900": 0,
+                "1000": 0,
+                ">1000": 0
+            }
+        }
+    }
+}
