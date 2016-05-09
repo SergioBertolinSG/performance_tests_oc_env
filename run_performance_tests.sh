@@ -15,8 +15,8 @@ echo "Process of the owncloud server: $PHPPID"
 
 sleep 2
 
-if [ ! -d /tmp/performance-tests ]; then
-    mkdir /tmp/performance-tests
+if [ ! -d /srv/performance-tests ]; then
+    mkdir /srv/performance-tests
 fi
 
 currentTime=$(date +%Y-%m-%d.%H-%M-%S)
@@ -24,6 +24,6 @@ currentTime=$(date +%Y-%m-%d.%H-%M-%S)
 export DAV_USER=admin
 export DAV_PASS=admin
 echo "$DAV_USER : $DAV_PASS will run tests"
-/opt/administration/performance-tests-c++/webdav-benchmark http://localhost:$PORT/remote.php/webdav/ -csv > /tmp/performance-tests/"$currentTime"_"$COMMIT".csv
+/opt/administration/performance-tests-c++/webdav-benchmark http://localhost:$PORT/remote.php/webdav/ -csv > /srv/performance-tests/"$currentTime"_"$COMMIT".csv
 
 sudo kill $PHPPID
