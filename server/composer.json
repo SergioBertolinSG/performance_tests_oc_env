@@ -1,0 +1,20 @@
+{
+    "name": "performance_api",
+    "description": "",
+    "license": "...",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Sergio Bertolin",
+            "email": "sbertolin@solidgear.es"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/src"
+        }
+    },
+    "require": {
+        "slim/slim": "^3.1"
+    }
+}

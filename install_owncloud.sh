@@ -8,7 +8,7 @@ fi
 COMMIT=$1
 
 #CLEAN ANY PREVIOUS INSTALLATION
-python clean_database.py
+python /srv/tools/clean_database.py
 sudo rm -rf /var/www/html/oc_server/config/config.php /var/www/html/oc_server/data/*
 
 currentTime=$(date +%Y-%m-%d.%H-%M-%S)

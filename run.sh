@@ -6,5 +6,5 @@ then
    exit
 fi
 COMMIT=$1
-./install_owncloud.sh $COMMIT
-./run_performance_tests.sh $COMMIT
+/srv/tools/install_owncloud.sh $COMMIT
+/srv/tools/run_performance_tests.sh $COMMIT
