@@ -2,7 +2,7 @@
 - hosts: all
   user: vagrant
   sudo: yes
-  
+
   tasks:
    - name: Add owncloud repository
      command: sh -c "echo 'deb http://download.owncloud.org/download/repositories/stable/Ubuntu_14.04/ /' >> /etc/apt/sources.list.d/owncloud.list"
@@ -32,24 +32,69 @@
      notify:
       - restart apache
 
-   - name: add script for installing current owncloud
-     copy: src=install_master_owncloud.sh dest=/home/vagrant/install_master_owncloud.sh owner=vagrant group=vagrant mode=0775
+   - name: Creates tools directory
+     file: path=/srv/tools state=directory owner=www-data group=www-data mode=0775
+
+   - name: Creates performance_tests directory
+     file: path=/srv/performance_tests state=directory owner=www-data group=www-data mode=0775
+
+   - name: add script for installing owncloud
+     copy: src=install_owncloud.sh dest=/srv/tools/install_owncloud.sh owner=www-data group=www-data mode=0775
+
+   - name: add script for running performance tests
+     copy: src=run_performance_tests.sh dest=/srv/tools/run_performance_tests.sh owner=www-data group=www-data mode=0775
+
+   - name: add script for using install_owncloud and run_performance_tests together
+     copy: src=run.sh dest=/srv/tools/run.sh owner=www-data group=www-data mode=0775
 
    - name: add script for removing default owncloud database
-     copy: src=clean_database.py dest=/home/vagrant/clean_database.py owner=vagrant group=vagrant mode=0775
+     copy: src=clean_database.py dest=/srv/tools/clean_database.py owner=www-data group=www-data mode=0775
+
+   - name: add script for creating expected json output file
+     copy: src=createFileMergingTestData.php dest=/srv/tools/createFileMergingTestData.php owner=www-data group=www-data mode=0775
+
+   - name: add json fake stats file needed for the creation of the file output (temporary)
+     copy: src=stats_fake.json dest=/srv/tools/stats_fake.json owner=www-data group=www-data mode=0775
+
+   - name: add script for preparing owncloud server path
+     copy: src=download_owncloud_core.sh dest=/home/vagrant/download_owncloud_core.sh owner=vagrant group=vagrant mode=0775
+
+   - name: add script for preparing administration repo clone
+     copy: src=download_administration.sh dest=/home/vagrant/download_administration.sh owner=vagrant group=vagrant mode=0775
+
+   - name: create server folder
+     file: path=/var/www/html/performance_server state=directory owner=www-data group=www-data mode=0775
+
+   - name: add index.php to performance server
+     copy: src=server/index.php dest=/var/www/html/performance_server/index.php owner=www-data group=www-data mode=0775
+
+   - name: add composer.json for dependencies
+     copy: src=server/composer.json dest=/var/www/html/performance_server/composer.json owner=www-data group=www-data mode=0775
+
+   - name: run download_owncloud_core
+     command: sh -c "/home/vagrant/download_owncloud_core.sh"
+
+   - name: run download_administration
+     command: sh -c "/home/vagrant/download_administration.sh"
 
    - name: download composer
      command: sh -c "curl -sS https://getcomposer.org/installer | php"
-   
+
    - name: install it
      command: sh -c "mv /home/vagrant/composer.phar /usr/local/bin/composer"
- 
+
    - name: create swap file composer
      command: sh -c "/bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024"
    - name: create swap space
      command: sh -c "/sbin/mkswap /var/swap.1"
    - name: activate swap
      command: sh -c "/sbin/swapon /var/swap.1"
+
+   - name: install performance server dependencies
+     command: sh -c "composer install --working-dir=/var/www/html/performance_server"
+
+   - name: Add owncloud repository
+     command: sh -c "echo 'www-data ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers"
 
   handlers:
     - name: restart apache
