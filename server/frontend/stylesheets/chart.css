@@ -1,0 +1,15 @@
+.chart-legend li span{
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	margin-right: 5px;	
+}
+
+#canvas {
+	height: 850;
+	width:  600;
+}
+
+#chartDiv {
+	width: 60%;
+}

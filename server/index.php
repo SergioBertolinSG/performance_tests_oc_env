@@ -16,13 +16,6 @@ function isProcessRunning($process){
 
 $app = new \Slim\App;
 
-$app->get('/hello/{name}', function (Request $request, Response $response) {
-    $name = $request->getAttribute('name');
-    $response->getBody()->write("Hello, $name");
-
-    return $response;
-});
-
 $app->get('/list_files_available', function (Request $request, Response $response) {
     $output = shell_exec('ls -1 /srv/performance_tests');
     $filesAvailable = explode("\n", $output);
@@ -36,7 +29,7 @@ $app->get('/get_file/{file}', function (Request $request, Response $response) {
     $myfile = fopen("/srv/performance_tests/$filename", "r") or die("Unable to open file!");
 	$jsoncontent = fread($myfile,filesize("/srv/performance_tests/$filename"));
 	fclose($myfile);
-	$response->getBody()->write($jsoncontent);
+	$response->getBody()->write($jsoncontent); #withJson($data, 201);
     return $response;
 });
 
