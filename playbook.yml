@@ -65,11 +65,29 @@
    - name: create server folder
      file: path=/var/www/html/performance_server state=directory owner=www-data group=www-data mode=0775
 
+   - name: create frontend folder
+     file: path=/var/www/html/performance_server/frontend state=directory owner=www-data group=www-data mode=0775
+
+   - name: create scripts folder
+     file: path=/var/www/html/performance_server/frontend/scripts state=directory owner=www-data group=www-data mode=0775
+
+   - name: create stylesheets folder
+     file: path=/var/www/html/performance_server/frontend/stylesheets state=directory owner=www-data group=www-data mode=0775
+
    - name: add index.php to performance server
      copy: src=server/index.php dest=/var/www/html/performance_server/index.php owner=www-data group=www-data mode=0775
 
    - name: add composer.json for dependencies
      copy: src=server/composer.json dest=/var/www/html/performance_server/composer.json owner=www-data group=www-data mode=0775
+
+   - name: add index.html
+     copy: src=server/index.html dest=/var/www/html/performance_server/index.html owner=www-data group=www-data mode=0775
+
+   - name: add js script
+     copy: src=server/frontend/scripts/chartGeneration.js dest=/var/www/html/performance_server/frontend/scripts/chartGeneration.js owner=www-data group=www-data mode=0775
+
+   - name: add stylesheet
+     copy: src=server/frontend/stylesheets/chart.css dest=/var/www/html/performance_server/frontend/stylesheets/chart.css owner=www-data group=www-data mode=0775
 
    - name: run download_owncloud_core
      command: sh -c "/home/vagrant/download_owncloud_core.sh"
